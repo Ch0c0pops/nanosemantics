@@ -1,0 +1,110 @@
+@import "variables/variables";
+
+.chatWindow {
+  max-width: 500px;
+  max-height: 700px;
+  border-radius: 5px;
+  height: 100vh;
+  min-height: 300px;
+  display: grid;
+  grid-template-rows: 30px minmax(0,1fr) 50px;
+  border: 1px solid black;
+
+  ::-webkit-scrollbar {
+    width: 0;  //убрал скроллбар
+    background: transparent;
+  }
+
+
+  &__header {
+    padding: 0;
+    max-width: inherit;
+    height: 100%;
+    grid-row: 1/2;
+    background-color: $base-color;
+    display: flex;
+    align-items: center;
+    color: grey;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__content {
+    max-width: inherit;
+    position: relative;
+    padding: 1rem;
+    grid-row: 2/3;
+    //align-content: end; //свойство блокирует прокрутку
+   overflow-y: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    background-image: url('http://localhost:9000/kawaii_background.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+   :nth-child(1){  //чтобы при пустом чате блоки отрисовывались от нижней границы
+      margin-top: auto;
+    }
+  }
+
+  &__messageBar {
+    padding: 0;
+    max-width: inherit;
+    background-color: $base-color;
+    height: 100%;
+    width: auto;
+    grid-row: 3/4;
+    justify-content: space-between;
+
+    input {
+      border-radius: 0.5rem;
+      height: 70%;
+      width: 70%;
+      border: none;
+      outline: none;
+      font-size: 13pt;
+      margin: auto 10px;
+    }
+
+    img {
+      height: 50%;
+      margin: 5px;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.newMessageInput {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.message, .botMessage {
+  display: flex;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  white-space: normal;
+  max-width: fit-content;  //чтобы не расширяло внешний блок
+}
+
+.message {
+  background-color: palegreen;
+  align-self: flex-end;
+  word-wrap: break-word;
+}
+
+.botMessage {
+  background-color: palegoldenrod;
+  text-align: start;
+  justify-self: start;
+}
+
